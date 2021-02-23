@@ -3,7 +3,10 @@ class App {
   css: string = ""
 
   constructor() {
-    this.vbox = new VBox(document.body, "flex-end", "center")
+    this.vbox = new VBox(document.body, {
+      vAlign: "flex-end",
+      hAlign: "center",
+    })
 
     const hello = document.createElement("div")
     hello.innerText = "Hello World"
