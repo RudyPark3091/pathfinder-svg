@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf ./build",
-    "copy": "mkdir ./build/public && cp ./src/public/* ./build/public",
+    "copyhtml": "cp ./src/public/*.html ./build/public",
+    "copycss": "mkdir ./build/public/css && cp ./src/public/css/* ./build/public/css",
+    "copy": "npm run copyhtml && npm run copycss",
     "start": "npm run clean && tsc && npm run copy && electron build/index",
     "build": "npm run clean && tsc && npm run copy",
     "test": "echo \"Error: no test specified\" && exit 1"

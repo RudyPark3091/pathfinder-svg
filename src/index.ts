@@ -6,7 +6,7 @@ const createWindow = () => {
     width: 800,
     height: 600,
   });
-  win.loadFile("./public/ui.html");
+  win.loadFile("./public/ui.html")
 }
 
 app.whenReady().then(createWindow)
