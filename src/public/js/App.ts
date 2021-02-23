@@ -3,9 +3,7 @@ class App {
   elems: Component[] = new Array<Component>()
 
   constructor() {
-    const vbox = new VBox(document.body, {
-      width: "300px",
-      height: "300px",
+    const vbox = new HBox(document.body, {
       vAlign: "flex-end",
       hAlign: "center",
     })

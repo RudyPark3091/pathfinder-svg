@@ -1,4 +1,4 @@
-class VBox implements Component {
+class HBox implements Component {
   target: HTMLElement
   container: HTMLElement
   vAlign: string
@@ -40,9 +40,8 @@ class VBox implements Component {
       width: ${this.width};
       height: ${this.height};
       display: flex;
-      flex-direction: column;
-      justify-content: ${this.vAlign};
-      align-items: ${this.hAlign};
+      justify-content: ${this.hAlign};
+      align-items: ${this.vAlign};
     }
     `
   }
