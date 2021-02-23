@@ -1,4 +1,4 @@
-class VBox {
+class VBox implements Component {
   target: HTMLElement
   container: HTMLElement
   vAlign: string
