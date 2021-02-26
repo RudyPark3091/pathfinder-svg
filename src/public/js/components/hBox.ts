@@ -22,21 +22,16 @@ class HBox implements Component {
     this.height = options.height ?? "100%"
 
     this.container = document.createElement("div")
-    this.container.classList.add("vbox-container")
+    this.container.classList.add("hbox-container")
   }
 
   public add(elem: HTMLElement): void {
     this.container.appendChild(elem)
   }
 
-  public render(): void {
-    // this.target.removeChild(this.container)
-    this.target.appendChild(this.container)
-  }
-
   public style(): string {
     return `
-    .vbox-container {
+    .hbox-container {
       width: ${this.width};
       height: ${this.height};
       display: flex;
@@ -44,5 +39,10 @@ class HBox implements Component {
       align-items: ${this.vAlign};
     }
     `
+  }
+
+  public render(): void {
+    // this.target.removeChild(this.container)
+    this.target.appendChild(this.container)
   }
 }

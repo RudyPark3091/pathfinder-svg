@@ -3,20 +3,16 @@ class App {
   elems: Component[] = new Array<Component>()
 
   constructor() {
-    const vbox = new HBox(document.body, {
-      vAlign: "flex-end",
-      hAlign: "center",
-    })
+    const splash = new Splash(document.body)
+    this.elems.push(splash)
+
+    const vbox = new Shape(document.body, {})
+
     this.elems.push(vbox)
 
-    const hello = document.createElement("div")
-    hello.innerText = "Hello World"
-
-    const hello2 = document.createElement("div")
-    hello2.innerText = "Hello World"
-
-    vbox.add(hello)
-    vbox.add(hello2)
+    window.onload = () => {
+      splash.toggleHidden()
+    }
   }
 
   public style() {

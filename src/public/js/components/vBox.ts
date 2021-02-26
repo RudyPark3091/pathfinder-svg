@@ -29,11 +29,6 @@ class VBox implements Component {
     this.container.appendChild(elem)
   }
 
-  public render(): void {
-    // this.target.removeChild(this.container)
-    this.target.appendChild(this.container)
-  }
-
   public style(): string {
     return `
     .vbox-container {
@@ -45,5 +40,10 @@ class VBox implements Component {
       align-items: ${this.hAlign};
     }
     `
+  }
+
+  public render(): void {
+    // this.target.removeChild(this.container)
+    this.target.appendChild(this.container)
   }
 }
