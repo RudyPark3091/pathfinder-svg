@@ -1,3 +1,5 @@
+window.styled = window.styled ?? []
+
 class VBox implements Component {
   target: HTMLElement
   container: HTMLElement
@@ -22,7 +24,7 @@ class VBox implements Component {
     this.height = options.height ?? "100%"
 
     this.container = document.createElement("div")
-    this.container.classList.add("vbox-container")
+    this.container.classList.add("vbox")
   }
 
   public add(elem: HTMLElement): void {
@@ -31,7 +33,7 @@ class VBox implements Component {
 
   public style(): string {
     return `
-    .vbox-container {
+    .vbox {
       width: ${this.width};
       height: ${this.height};
       display: flex;

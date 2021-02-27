@@ -6,9 +6,13 @@ class App {
     const splash = new Splash(document.body)
     this.elems.push(splash)
 
-    const vbox = new Shape(document.body, {})
+    const shape = new Shape(document.body, {})
+    const main = new MainArea(document.body)
+    const detail = new DetailArea(document.body, {})
 
-    this.elems.push(vbox)
+    this.elems.push(shape)
+    this.elems.push(main)
+    this.elems.push(detail)
 
     window.onload = () => {
       splash.toggleHidden()

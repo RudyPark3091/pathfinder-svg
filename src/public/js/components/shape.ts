@@ -18,7 +18,7 @@ class Shape extends HBox implements Component {
     this.width = !!options.width ? options.width : "50px"
 
     this.container = document.createElement("div")
-    this.container.classList.add("hbox-container")
+    this.container.classList.add("hbox")
     this.container.classList.add("shape-container")
 
     const hand = document.createElement("div")
@@ -26,14 +26,17 @@ class Shape extends HBox implements Component {
     super.add(hand)
   }
 
-  public style() {
+  public style(): string {
+    let styleString: string = ""
+
+    const isSuperDeclared = window.styled.find((it) => it === "HBox")
+    styleString += isSuperDeclared ? "" : super.style()
+
     return (
-      super.style() +
+      styleString +
       `
     .shape-container {
-      width: ${this.width};
-      height: 100%;
-      border: 1px solid red;
+      background-color: #333;
     }
 
     .shape-hand {
@@ -45,7 +48,7 @@ class Shape extends HBox implements Component {
     )
   }
 
-  public render() {
+  public render(): void {
     this.target.appendChild(this.container)
   }
 }

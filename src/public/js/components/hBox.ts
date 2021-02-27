@@ -1,3 +1,5 @@
+window.styled = window.styled ?? []
+
 class HBox implements Component {
   target: HTMLElement
   container: HTMLElement
@@ -22,7 +24,7 @@ class HBox implements Component {
     this.height = options.height ?? "100%"
 
     this.container = document.createElement("div")
-    this.container.classList.add("hbox-container")
+    this.container.classList.add("hbox")
   }
 
   public add(elem: HTMLElement): void {
@@ -31,7 +33,7 @@ class HBox implements Component {
 
   public style(): string {
     return `
-    .hbox-container {
+    .hbox {
       width: ${this.width};
       height: ${this.height};
       display: flex;
