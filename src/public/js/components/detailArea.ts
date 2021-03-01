@@ -10,11 +10,11 @@ class DetailArea extends VBox implements Component {
     },
   ) {
     super(target, {
-      width: !!options.width ? options.width : "100px",
+      width: !!options.width ? options.width : "200px",
       hAlign: "center",
     })
     this.target = target
-    this.width = !!options.width ? options.width : "100px"
+    this.width = !!options.width ? options.width : "200px"
 
     this.container = document.createElement("div")
     this.container.classList.add("vbox")

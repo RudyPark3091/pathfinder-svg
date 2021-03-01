@@ -25,7 +25,7 @@ class Splash {
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #444;
+      background-color: #fff;
     }
 
     .splash-container.hidden {

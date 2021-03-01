@@ -7,7 +7,7 @@ const createWindow = () => {
     height: 600,
     fullscreen: true,
   })
-  win.loadFile("./public/ui.html")
+  win.loadFile("./public/index.html")
 }
 
 app.whenReady().then(createWindow)
