@@ -135,7 +135,7 @@ class Canvas implements Component {
     `
 
     const selector = new Selector(this.svg, 5, 5, 200, 200)
-    this.svg.onclick = (e) => {
+    this.svg.onmousedown = (e) => {
       const target = e.target as HTMLElement
 
       if (target.localName === "rect") {
@@ -149,7 +149,7 @@ class Canvas implements Component {
         selector.render()
         console.log("selected item:", selector.selectedElement)
       } else {
-        selector.selectedElement = null
+        selector.selectedElement = target
         selector.hide()
         console.log("selected item:", selector.selectedElement)
       }

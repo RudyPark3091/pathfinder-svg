@@ -8,8 +8,8 @@
     "copyhtml": "cp ./src/public/*.html ./build/public",
     "copycss": "mkdir ./build/public/css && cp ./src/public/css/* ./build/public/css",
     "copy": "npm run copyhtml && npm run copycss",
-    "start": "npm run clean && tsc && npm run copy && electron build/index",
     "build": "npm run clean && tsc && npm run copy",
+    "start": "npm run build && electron build/index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

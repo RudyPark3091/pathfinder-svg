@@ -1,4 +1,4 @@
-class Splash {
+class Splash implements Component {
   target: HTMLElement
   container: HTMLElement
 
