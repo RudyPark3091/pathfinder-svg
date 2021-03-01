@@ -6,11 +6,11 @@ class App {
     const splash = new Splash(document.body)
     this.elems.push(splash)
 
-    const shape = new Shape(document.body, {})
     const main = new MainArea(document.body)
+    const toolBox = new ToolBox(document.body, {})
     const detail = new DetailArea(document.body, {})
 
-    this.elems.push(shape)
+    this.elems.push(toolBox)
     this.elems.push(main)
     this.elems.push(detail)
 
