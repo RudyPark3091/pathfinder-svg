@@ -1,10 +1,12 @@
 class Selector {
   target: SVGElement
   rects: SVGRectElement[]
-  selectedElement?: HTMLElement
-  pointWidth: number = 5
-  pointHeight: number = 5
-  fillColor: string = "#444444bb"
+  lines: SVGLineElement[]
+  selectedElement?: HTMLElement | null
+  pointWidth: number = 7
+  pointHeight: number = 7
+  fillColor: string = "#4444ff"
+  lineWidth: number = 2
 
   constructor(
     target: SVGElement,
@@ -17,20 +19,29 @@ class Selector {
     this.rects = Array.from(new Array<SVGRectElement>(8), () =>
       document.createElementNS("http://www.w3.org/2000/svg", "rect"),
     )
+    this.lines = Array.from(new Array<SVGLineElement>(4), () =>
+      document.createElementNS("http://www.w3.org/2000/svg", "line"),
+    )
 
     this.rects.forEach((rect) => {
       rect.setAttribute("width", this.pointWidth.toString())
       rect.setAttribute("height", this.pointHeight.toString())
       rect.setAttribute("fill", this.fillColor)
     })
+
+    this.lines.forEach((line) => {
+      // line.setAttribute("x1", x.toString())
+      // line.setAttribute("y1", y.toString())
+      // line.setAttribute("x2", (x + width).toString())
+      // line.setAttribute("y2", (y + height).toString())
+      line.setAttribute("stroke-width", this.lineWidth.toString())
+      line.setAttribute("stroke", this.fillColor)
+    })
     this.setPosition(x, y, width, height)
   }
 
   public setPosition(x: number, y: number, width: number, height: number) {
-    this.rects.forEach((rect) => {
-      rect.setAttribute("x", x.toString())
-      rect.setAttribute("y", y.toString())
-    })
+    // set rect elements' position
     this.rects[0].setAttribute("x", x.toString())
     this.rects[0].setAttribute("y", y.toString())
 
@@ -54,6 +65,29 @@ class Selector {
 
     this.rects[7].setAttribute("x", (x + width).toString())
     this.rects[7].setAttribute("y", (y + height).toString())
+
+    // set line elements' position
+    x += this.pointWidth / 2
+    y += this.pointHeight / 2
+    this.lines[0].setAttribute("x1", x.toString())
+    this.lines[0].setAttribute("y1", y.toString())
+    this.lines[0].setAttribute("x2", (x + width).toString())
+    this.lines[0].setAttribute("y2", y.toString())
+
+    this.lines[1].setAttribute("x1", (x + width).toString())
+    this.lines[1].setAttribute("y1", y.toString())
+    this.lines[1].setAttribute("x2", (x + width).toString())
+    this.lines[1].setAttribute("y2", (y + height).toString())
+
+    this.lines[2].setAttribute("x1", x.toString())
+    this.lines[2].setAttribute("y1", (y + height).toString())
+    this.lines[2].setAttribute("x2", (x + width).toString())
+    this.lines[2].setAttribute("y2", (y + height).toString())
+
+    this.lines[3].setAttribute("x1", x.toString())
+    this.lines[3].setAttribute("y1", y.toString())
+    this.lines[3].setAttribute("x2", x.toString())
+    this.lines[3].setAttribute("y2", (y + height).toString())
   }
 
   public setColor(color: string): void {
@@ -70,6 +104,12 @@ class Selector {
 
   public render(): void {
     this.rects.forEach((rect) => this.target.appendChild(rect))
+    this.lines.forEach((line) => this.target.appendChild(line))
+  }
+
+  public hide(): void {
+    this.rects.forEach((rect) => rect.remove())
+    this.lines.forEach((line) => line.remove())
   }
 }
 
@@ -107,6 +147,10 @@ class Canvas implements Component {
           +target.getAttribute("height")!,
         )
         selector.render()
+        console.log("selected item:", selector.selectedElement)
+      } else {
+        selector.selectedElement = null
+        selector.hide()
         console.log("selected item:", selector.selectedElement)
       }
     }
