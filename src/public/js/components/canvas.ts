@@ -155,19 +155,46 @@ class Canvas implements Component {
       }
     }
 
-    let x: number = -1,
-      y: number = -1
-    const dragger = new Dragger(this.container, (e: MouseEvent) => {
-      const target = dragger.target as HTMLElement
-      if (target.localName === "rect") {
-        if (x === -1 && y === -1) {
-          x = +target.getAttribute("x")!
-          y = +target.getAttribute("y")!
-        }
+    const positionDragger = new Dragger({
+      elem: this.container,
+      onStart: (e: MouseEvent) => {
+        positionDragger.propX = +positionDragger.target!.getAttribute("x")!
+        positionDragger.propY = +positionDragger.target!.getAttribute("y")!
+      },
+      onDrag: (e: MouseEvent) => {
+        const target = positionDragger.target as HTMLElement
+        if (target.localName === "rect") {
+          target.setAttribute(
+            "x",
+            (
+              positionDragger.propX +
+              positionDragger.endX -
+              positionDragger.startX
+            ).toString(),
+          )
+          target.setAttribute(
+            "y",
+            (
+              positionDragger.propY +
+              positionDragger.endY -
+              positionDragger.startY
+            ).toString(),
+          )
 
-        target.setAttribute("x", (x + dragger.endX - dragger.startX).toString())
-        target.setAttribute("y", (y + dragger.endY - dragger.startY).toString())
-      }
+          selector.selectedElement = target
+          selector.setPosition(
+            +target.getAttribute("x")! - selector.pointWidth / 2,
+            +target.getAttribute("y")! - selector.pointHeight / 2,
+            +target.getAttribute("width")!,
+            +target.getAttribute("height")!,
+          )
+          selector.render()
+        }
+      },
+      onEnd: (e: MouseEvent) => {
+        positionDragger.propX = +positionDragger.target!.getAttribute("x")!
+        positionDragger.propY = +positionDragger.target!.getAttribute("y")!
+      },
     })
 
     this.container.appendChild(this.svg)
