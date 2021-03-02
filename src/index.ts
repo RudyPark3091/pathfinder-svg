@@ -3,9 +3,9 @@ import { app, BrowserWindow } from "electron"
 let win: BrowserWindow
 const createWindow = () => {
   win = new BrowserWindow({
-    width: 800,
+    width: 900,
     height: 600,
-    fullscreen: true,
+    // fullscreen: true,
   })
   win.loadFile("./public/index.html")
 }
