@@ -147,13 +147,28 @@ class Canvas implements Component {
           +target.getAttribute("height")!,
         )
         selector.render()
-        console.log("selected item:", selector.selectedElement)
+        // console.log("selected item:", selector.selectedElement)
       } else {
         selector.selectedElement = target
         selector.hide()
-        console.log("selected item:", selector.selectedElement)
+        // console.log("selected item:", selector.selectedElement)
       }
     }
+
+    let x: number = -1,
+      y: number = -1
+    const dragger = new Dragger(this.container, (e: MouseEvent) => {
+      const target = dragger.target as HTMLElement
+      if (target.localName === "rect") {
+        if (x === -1 && y === -1) {
+          x = +target.getAttribute("x")!
+          y = +target.getAttribute("y")!
+        }
+
+        target.setAttribute("x", (x + dragger.endX - dragger.startX).toString())
+        target.setAttribute("y", (y + dragger.endY - dragger.startY).toString())
+      }
+    })
 
     this.container.appendChild(this.svg)
   }
