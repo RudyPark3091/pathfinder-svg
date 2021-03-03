@@ -2,13 +2,15 @@ class App {
   css: string = ""
   elems: Component[] = new Array<Component>()
 
-  constructor() {
-    const splash = new Splash(document.body)
+  constructor(
+    private target: HTMLElement
+  ) {
+    const splash = new Splash(target)
     this.elems.push(splash)
 
-    const main = new MainArea(document.body)
-    const toolBox = new ToolBox(document.body, {})
-    const detail = new DetailArea(document.body, {})
+    const main = new MainArea(target)
+    const toolBox = new ToolBox(target, {})
+    const detail = new DetailArea(target, {})
 
     this.elems.push(toolBox)
     this.elems.push(main)
