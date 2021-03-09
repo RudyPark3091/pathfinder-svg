@@ -129,16 +129,16 @@ class Canvas implements Component {
     this.svg.setAttribute("width", "600px")
     this.svg.setAttribute("height", "400px")
     this.svg.innerHTML = `
-    <rect x="100" y="100" width="100" height="100" fill="red"></rect>
-    <rect x="250" y="100" width="100" height="100" fill="green"></rect>
-    <rect x="100" y="250" width="100" height="100" fill="blue"></rect>
+    <rect x="20" y="20" width="100" height="100" fill="#000"></rect>
+    <rect x="40" y="40" width="100" height="100" fill="#333"></rect>
+    <rect x="60" y="60" width="100" height="100" fill="#666"></rect>
     `
 
     const selector = new Selector(this.svg, 5, 5, 200, 200)
     this.svg.onmousedown = (e) => {
       const target = e.target as HTMLElement
 
-      if (target.localName === "rect") {
+      if (target.nodeName === "rect") {
         selector.selectedElement = target
         selector.setPosition(
           +target.getAttribute("x")! - selector.pointWidth / 2,
@@ -163,7 +163,7 @@ class Canvas implements Component {
       },
       onDrag: (e: MouseEvent) => {
         const target = positionDragger.target as HTMLElement
-        if (target.localName === "rect") {
+        if (target.nodeName === "rect") {
           target.setAttribute(
             "x",
             (
